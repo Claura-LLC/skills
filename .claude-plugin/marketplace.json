@@ -1,0 +1,20 @@
+{
+  "name": "claura-skills",
+  "owner": {
+    "name": "Claura",
+    "url": "https://claura-ai.com"
+  },
+  "metadata": {
+    "description": "Skills de marketing que usamos en Claura con nuestros clientes: SEO, AEO, GEO, contenido y ventas.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "claura-marketing",
+      "description": "Skills de marketing de Claura: control de SEO, AEO y GEO para webs.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/web-seo-checklist"]
+    }
+  ]
+}
