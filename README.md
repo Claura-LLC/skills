@@ -25,6 +25,12 @@ Vamos sumando una por vez.
 
 Después pedile a tu agente, por ejemplo: «corré el web-seo-checklist sobre esta web».
 
+## Con el MCP de Claura
+
+Todas funcionan solas. Si además conectás Claude, ChatGPT o Claude Code a tu cuenta de Claura con el
+[MCP de Claura](https://claura-ai.com/mcp), la skill trabaja con los datos reales de tu marca: tu Search Console, tu
+analítica, tu web publicada y lo que las IAs dicen de vos, sin que tengas que pegarlos a mano.
+
 ## Licencia
 
 MIT. Usalas, cambialas y compartilas. Si te sirven, contalo.

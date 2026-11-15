@@ -10,6 +10,19 @@ Es el control que usamos en [Claura](https://claura-ai.com) antes de dar por ter
 
 Está escrito para sitios hechos con Next.js (App Router), pero casi todo vale para cualquier stack: donde dice `metadata` o `generateStaticParams`, leé "el lugar donde tu framework define eso".
 
+## Con el MCP de Claura (opcional)
+
+La skill funciona sola, revisando el código y el sitio publicado a mano. Si tu agente tiene conectado el
+[MCP de Claura](https://claura-ai.com/mcp) (Claude, ChatGPT o Claude Code conectados a tu cuenta de Claura), usá sus
+herramientas para lo que de otro modo se mide a mano:
+
+- **Auditar el sitio publicado** página por página (estado, canonical, schema, enlaces rotos).
+- **Leer Search Console y Analytics** de la marca para los puntos de verificación y medición.
+- **Preguntarles a ChatGPT y a Google** por la marca para el punto de menciones sin clic.
+
+Antes de usar una herramienta que gasta o publica, mostrá qué vas a hacer y esperá la confirmación. Si el MCP no está
+conectado, seguí a mano: ningún punto depende de él.
+
 ## 0. Cómo se corre (regla dura)
 
 1. **Punto por punto.** Armá una lista de tareas por sección y recorré cada punto contra el sitio real (el código y el HTML servido).
