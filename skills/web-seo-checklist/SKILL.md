@@ -12,9 +12,9 @@ Está escrito para sitios hechos con Next.js (App Router), pero casi todo vale p
 
 ## Con el MCP de Claura (opcional)
 
-La skill funciona sola, revisando el código y el sitio publicado a mano. Si tu agente tiene conectado el
-[MCP de Claura](https://claura-ai.com/mcp) (Claude, ChatGPT o Claude Code conectados a tu cuenta de Claura), usá sus
-herramientas para lo que de otro modo se mide a mano:
+La skill funciona sola, revisando el código y el sitio publicado a mano. Si sos cliente de Claura y tu agente tiene
+conectado el [MCP de Claura](https://claura-ai.com/mcp) (Claude, ChatGPT o Claude Code conectados a tu cuenta de
+Claura), usá sus herramientas para lo que de otro modo se mide a mano:
 
 - **Auditar el sitio publicado** página por página (estado, canonical, schema, enlaces rotos).
 - **Leer Search Console y Analytics** de la marca para los puntos de verificación y medición.
@@ -77,7 +77,7 @@ RESULTADO: N hechos · N fallidos · N pendientes · N diferidos
 ## 3. Imagen para compartir (Open Graph)
 
 - [ ] <!-- seo.og.dedicated-1200x630 --> **Dedicada, 1200×630.** Nunca una foto genérica ni otra proporción: WhatsApp, Facebook y LinkedIn la recortan.
-- [ ] <!-- seo.og.brand-composition --> Logo, frase con la propuesta, prueba social, dominio y la cara del vocero si la marca tiene uno. Fondo de la marca.
+- [ ] <!-- seo.og.brand-composition --> Logo, frase con la propuesta, prueba social, dominio y la cara del vocero si la marca tiene uno. Fondo de la marca. Si la generás por código, cargá las fuentes reales del sitio desde un archivo y mirá el resultado: un servicio de fuentes que falla puede devolver una página de error en vez de la fuente, y la imagen sale con la letra de respaldo sin ningún aviso.
 - [ ] <!-- seo.og.large-text --> **Textos grandes**: título de 60 px o más y secundarios de 25 px o más. Se ve en miniatura en el feed.
 - [ ] <!-- seo.og.metadata-wiring --> Declarada en el layout raíz (con `twitter: summary_large_image`, ancho, alto y alt), en las páginas con metadata propia y como respaldo de las páginas dinámicas.
 - [ ] <!-- seo.og.measured-dimensions --> **`og:image:width` y `height` se miden del archivo, nunca se escriben a mano.** En claura-ai.com, 103 de 114 artículos declaraban 1920×1080 sobre imágenes de otro tamaño. Leé la medida de los bytes del archivo (no de la extensión: un `.png` puede ser un JPEG) y, si no se puede medir, omitila.
@@ -98,7 +98,7 @@ Un solo `@graph`, renderizado en el servidor, en el `<head>`.
 - [ ] <!-- seo.schema.entity-stubs --> **Cada página que referencia un `@id` lo incluye**: un buscador resuelve los `@id` dentro de una sola página. Si una subpágina apunta a un nodo que solo está en la home, el enlace queda roto sin que el validador se queje. Llevá una versión mínima del nodo (`@id`, `@type`, `name`, `url`).
 - [ ] <!-- seo.schema.person --> `Person` por fundador o socio (`jobTitle`, `worksFor`, `alumniOf`, `knowsAbout`, `sameAs`).
 - [ ] <!-- seo.schema.breadcrumb-visible --> **`BreadcrumbList` y miga visible armadas desde la misma lista** (un helper), con la misma raíz en todas las plantillas. El schema sin miga visible es un punto a medias.
-- [ ] <!-- seo.schema.faq-visible-only --> **FAQ visible y `FAQPage` son decisiones separadas.** No agregues preguntas por costumbre. Si emitís `FAQPage`, sale del mismo componente que se ve, con texto idéntico. Ya no da resultado enriquecido: emitilo solo si sale gratis.
+- [ ] <!-- seo.schema.faq-visible-only --> **FAQ visible y `FAQPage` son decisiones separadas.** No agregues preguntas por costumbre. Si emitís `FAQPage`, sale del mismo componente que se ve, con texto idéntico. Google dejó de mostrar el resultado enriquecido de FAQ para todos los sitios el 7 de mayo de 2026: emitilo solo si sale gratis.
 - [ ] <!-- seo.schema.faq-answer-in-html --> **Las respuestas de cada pregunta están en el HTML con la pregunta cerrada.** Un acordeón que monta la respuesta al abrirla la esconde de Google y de las IAs, que no hacen clic. Usá `<details>` o el contenido montado y plegado. Verificalo con `curl` en una página de cada plantilla.
 - [ ] <!-- seo.schema.plain-text --> **Texto plano en todo el JSON-LD**: nada de `[texto](url)`, `**` ni etiquetas. Si el texto sale de MDX, pasa por un solo limpiador compartido.
 - [ ] <!-- seo.schema.template-matrix --> **Matriz de schema por plantilla sobre el sitemap entero**: agrupá las URLs por plantilla y anotá los `@type`. Marcá plantillas indexables sin JSON-LD, preguntas marcadas que no se ven, migas distintas de las visibles y `url` distinto del canonical. Se repite cada vez que nace una plantilla.
@@ -128,13 +128,13 @@ Un solo `@graph`, renderizado en el servidor, en el `<head>`.
 
 ## 7. Después de publicar (cada vez que cambia la imagen social o la metadata)
 
-- [ ] <!-- seo.postdeploy.social-rescrape --> **Refrescar la caché de Facebook y WhatsApp**, que guardan la imagen vieja semanas: `POST https://graph.facebook.com/v21.0/` con `id=<url>`, `scrape=true` y un token de app (`APP_ID|APP_SECRET`). Sin token ya no funciona. Validá por la URL de la imagen en la respuesta.
+- [ ] <!-- seo.postdeploy.social-rescrape --> **Refrescar la caché de Facebook y WhatsApp**, que guardan la imagen vieja semanas: `POST https://graph.facebook.com/v26.0/` (o la versión vigente de la Graph API) con `id=<url>`, `scrape=true` y un token de app (`APP_ID|APP_SECRET`). Sin token ya no funciona. Validá por la URL de la imagen en la respuesta.
 - [ ] <!-- seo.postdeploy.sharing-debugger --> Revisión visual en el depurador de contenido compartido de Facebook.
 
 ## 8. Blog y artículos
 
 - [ ] <!-- seo.blog.exists --> **El sitio de la marca tiene blog.** Sin blog no tiene dónde crecer en búsqueda. N/A solo para piezas que no son el sitio de la marca (una propuesta, una landing de campaña).
-- [ ] <!-- seo.blog.hub-categories --> **Hub y categorías indexables**: el hub explica el alcance con texto propio; cada tema con demanda tiene su URL, título, H1, introducción y migas. Un filtro en el navegador no reemplaza a la página de categoría.
+- [ ] <!-- seo.blog.hub-categories --> **Hub y categorías indexables**: el hub explica el alcance con texto propio; cada tema con demanda tiene su URL, título, H1, introducción y migas. Un filtro en el navegador no reemplaza a la página de categoría. Si el menú ofrece categorías, enlaza solo a las que existen como página, con `<a href>` reales, y sigue llevando al blog completo.
 - [ ] <!-- seo.blog.cards --> **Tarjetas completas**: título, descripción propia, categoría, imagen con medidas y enlace. Si existe la página de la categoría, la etiqueta enlaza ahí.
 - [ ] <!-- seo.blog.pagination --> **Paginación con URL propia** y enlaces `<a href>`. Nada de botones que solo reordenan en el navegador.
 - [ ] <!-- seo.blog.hub-schema --> `CollectionPage` en el hub; `ItemList` solo si lista exactamente lo que se ve.
@@ -157,7 +157,8 @@ Un solo `@graph`, renderizado en el servidor, en el `<head>`.
 - [ ] <!-- seo.analytics.resilient-cta --> **El botón funciona antes y después de cargar JavaScript**: el enlace o el formulario apuntan a un destino válido sin JS; el modal es una mejora.
 - [ ] <!-- seo.analytics.crm-match --> **Un contacto, un evento**: el navegador mide la intención; el servidor emite el evento de contacto una sola vez, cuando el contacto quedó guardado, con el mismo identificador. Nunca desde los dos lados.
 - [ ] <!-- seo.analytics.consent-regions --> **Consentimiento probado por región**: antes y después de aceptar, en un país con ley de cookies y en otro sin ella.
-- [ ] <!-- seo.analytics.ai-channel --> **Canal de tráfico de IAs en GA4**: un grupo de canales para `chatgpt.com|perplexity.ai|claude.ai|gemini.google.com|copilot.microsoft.com` y los que aparezcan en tus referencias.
+- [ ] <!-- seo.analytics.ai-channel --> **Canal de tráfico de IAs en GA4**: un grupo de canales propio, mirando antes qué referencias de IAs ya te llegan. Por ejemplo `chatgpt\.com|chat\.openai\.com|perplexity\.ai|claude\.ai|gemini\.google\.com|copilot\.microsoft\.com|deepseek\.com|grok\.com|meta\.ai`, más las que aparezcan en tus referencias.
+- [ ] <!-- seo.analytics.gtm-access --> **Google Tag Manager publicado no es lo mismo que editable**: anotá qué etiquetas, destinos y consentimiento tiene el contenedor publicado, y por separado si alguien del equipo puede abrirlo y editarlo. No lo saques hasta haber migrado cada etiqueta y verificado que su evento sigue llegando.
 
 ## 10. Higiene técnica
 
@@ -186,7 +187,7 @@ El SEO técnico hace que la página se indexe. Esta sección hace que ChatGPT, P
 
 - [ ] <!-- seo.aeo.ssr-content --> **El contenido importante está en el HTML inicial**: servicios, preguntas, datos, precios, canonical y robots. Probalo con `curl -s <url> | grep "<frase>"`. Si aparece recién después de hidratar, las IAs pueden no verlo.
 - [ ] <!-- seo.aeo.initial-h1 --> **Un `h1` en el HTML de cada página**, incluidas las que abren con un video o una foto sin texto. Si el diseño no muestra título, un `<h1 class="sr-only">` descriptivo.
-- [ ] <!-- seo.aeo.robots-retrieval-training --> **robots.txt: búsqueda y entrenamiento son decisiones separadas.** Los rastreadores de búsqueda (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) no pueden estar bloqueados, ni por un comodín heredado. Los de entrenamiento (`GPTBot`, `CCBot`, `Google-Extended`) los decide la marca. `Google-Extended` no controla tu aparición en Google.
+- [ ] <!-- seo.aeo.robots-retrieval-training --> **robots.txt: búsqueda y entrenamiento son decisiones separadas.** Los rastreadores de búsqueda (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) no pueden estar bloqueados, ni por un comodín heredado. Los de entrenamiento (`GPTBot`, `CCBot`, `Google-Extended`) los decide la marca. `ChatGPT-User` y `Perplexity-User` responden a un pedido de una persona y sus dueños avisan que pueden no respetar robots.txt: anotalos, pero no frenan el control. `Google-Extended` no controla tu aparición en Google.
 - [ ] <!-- seo.aeo.performance --> Las páginas que venden no son las lentas.
 
 ### 11.2 Contenido citable

@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Skills de marketing que usamos en Claura con nuestros clientes: SEO, AEO, GEO, contenido y ventas.",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -14,7 +14,26 @@
       "description": "Skills de marketing de Claura: control de SEO, AEO y GEO para webs.",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/web-seo-checklist"]
+      "skills": [
+        "./skills/web-seo-checklist"
+      ],
+      "version": "1.1.0",
+      "author": {
+        "name": "Claura",
+        "url": "https://claura-ai.com"
+      },
+      "homepage": "https://claura-ai.com/skills",
+      "repository": "https://github.com/Claura-LLC/skills",
+      "license": "MIT",
+      "keywords": [
+        "seo",
+        "aeo",
+        "geo",
+        "marketing",
+        "schema",
+        "json-ld"
+      ],
+      "category": "marketing"
     }
   ]
 }
