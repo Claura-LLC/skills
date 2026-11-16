@@ -13,17 +13,17 @@ Vamos sumando una por vez.
 - **Salen de trabajo real.** Cada punto del control existe porque algo se rompió en una web de verdad, y donde sirve el punto cuenta el caso.
 - **No inventan datos.** Lo que falta (horarios, reseñas, precios) va a una lista de pedidos, nunca se rellena.
 - **Se leen enteras antes de instalar.** `web-seo-checklist` es texto plano: no trae scripts ni pide claves. Si una skill futura trae un script, va en su carpeta a la vista.
-- **Se mantienen.** Cuando cambia una regla de Google o de las IAs, actualizamos la skill acá.
+- **Se mantienen.** Cuando cambia una regla de Google o de las IAs, actualizamos la skill aquí.
 
 ## Cómo instalarlas
 
-**Cualquier agente** (Claude Code, Cursor, Codex, Gemini CLI y otros), con el instalador [skills](https://github.com/vercel-labs/skills):
+**Cualquier agente** (Claude Code, Cursor, Codex, Gemini CLI y otros), con el instalador [skills](https://github.com/vercel-labs/skills). Con `-g` queda para todos tus proyectos:
 
 ```
-npx skills add Claura-LLC/skills --skill web-seo-checklist
+npx skills add Claura-LLC/skills --skill web-seo-checklist -g
 ```
 
-Te pregunta en qué agente instalarla. Con `-a claude-code` va directo a `.claude/skills/` del proyecto y con `-g` queda para todos tus proyectos.
+Te pregunta en qué agentes instalarla.
 
 **Claude Code**, como plugin:
 
@@ -32,27 +32,21 @@ Te pregunta en qué agente instalarla. Con `-a claude-code` va directo a `.claud
 /plugin install claura-marketing@claura-skills
 ```
 
-**Claude Code**, a mano: copiá la carpeta de la skill a `.claude/skills/` de tu proyecto o a `~/.claude/skills/`.
+**A mano**: copia la carpeta de la skill a `~/.claude/skills/` (Claude Code) o a `~/.agents/skills/` (Cursor, Codex y Gemini CLI la leen). En Codex se llama con `$web-seo-checklist`.
 
-**Claude (app)**: comprimí la carpeta de la skill en un ZIP y subila desde Customize, Skills, botón «+», «Create skill» y «Upload a skill». Necesita la ejecución de código prendida.
+**Claude (app)**: comprime la carpeta de la skill en un ZIP y súbela desde Customize, Skills, botón «+», «Create skill» y «Upload a skill». Necesita la ejecución de código prendida.
 
-**Cursor**: copiá la carpeta a `.cursor/skills/` o `.agents/skills/` (Cursor también lee `.claude/skills/`).
-
-**Codex**: copiá la carpeta a `.agents/skills/` del repo o a `~/.agents/skills/`, y llamala con `$web-seo-checklist`.
-
-**Gemini CLI**: instalala con el comando de arriba o referenciá el `SKILL.md` desde tu `GEMINI.md`.
-
-Después pedile a tu agente, por ejemplo: «corré el web-seo-checklist sobre esta web».
+Después pídele a tu agente, por ejemplo: «corre el web-seo-checklist sobre esta web».
 
 ## Con el MCP de Claura
 
-Todas funcionan solas. Si sos cliente de Claura y conectás Claude, ChatGPT o Claude Code a tu cuenta con el
+Todas funcionan solas. Si eres cliente de Claura y conectas Claude, ChatGPT o Claude Code a tu cuenta con el
 [MCP de Claura](https://claura-ai.com/mcp), la skill trabaja con los datos reales de tu marca: tu Search Console, tu
-analítica, tu web publicada y lo que las IAs dicen de vos, sin que tengas que pegarlos a mano.
+analítica, tu web publicada y lo que las IAs dicen de ti, sin que tengas que pegarlos a mano.
 
 ## Licencia
 
-MIT. Usalas, cambialas y compartilas. Si te sirven, contalo.
+MIT. Úsalas, cámbialas y compártelas. Si te sirven, cuéntalo.
 
 ---
 
