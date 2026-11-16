@@ -32,21 +32,21 @@ Te pregunta en qué agentes instalarla.
 /plugin install claura-marketing@claura-skills
 ```
 
-**A mano**: copia la carpeta de la skill a `~/.claude/skills/` (Claude Code) o a `~/.agents/skills/` (Cursor, Codex y Gemini CLI la leen). En Codex se llama con `$web-seo-checklist`.
+**A mano**: copiá la carpeta de la skill a `~/.claude/skills/` (Claude Code) o a `~/.agents/skills/` (Cursor, Codex y Gemini CLI la leen). En Codex se llama con `$web-seo-checklist`.
 
-**Claude (app)**: comprime la carpeta de la skill en un ZIP y súbela desde Customize, Skills, botón «+», «Create skill» y «Upload a skill». Necesita la ejecución de código prendida.
+**Claude (app)**: comprimí la carpeta de la skill en un ZIP y subila desde Customize, Skills, botón «+», «Create skill» y «Upload a skill». Necesita la ejecución de código prendida.
 
-Después pídele a tu agente, por ejemplo: «corre el web-seo-checklist sobre esta web».
+Después pedile a tu agente, por ejemplo: «corré el web-seo-checklist sobre esta web».
 
 ## Con el MCP de Claura
 
-Todas funcionan solas. Si eres cliente de Claura y conectas Claude, ChatGPT o Claude Code a tu cuenta con el
+Todas funcionan solas. Si sos cliente de Claura y conectás Claude, ChatGPT o Claude Code a tu cuenta con el
 [MCP de Claura](https://claura-ai.com/mcp), la skill trabaja con los datos reales de tu marca: tu Search Console, tu
-analítica, tu web publicada y lo que las IAs dicen de ti, sin que tengas que pegarlos a mano.
+analítica, tu web publicada y lo que las IAs dicen de vos, sin que tengas que pegarlos a mano.
 
 ## Licencia
 
-MIT. Úsalas, cámbialas y compártelas. Si te sirven, cuéntalo.
+MIT. Usalas, cambialas y compartilas. Si te sirven, contalo.
 
 ---
 

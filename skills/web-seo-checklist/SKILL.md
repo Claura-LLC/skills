@@ -1,6 +1,6 @@
 ---
 name: web-seo-checklist
-description: Control de SEO, AEO y GEO para dar por terminada una web, punto por punto. Cubre metadata, imagen para compartir, datos estructurados (JSON-LD), reseñas, arquitectura e indexación a escala, sitemap, redirects, blog, analítica, higiene técnica, Core Web Vitals y contenido citable por ChatGPT, Perplexity y Google AI Overviews. Cada punto termina con estado (hecho, fallido, N/A, pendiente o diferido) y dueño; un punto sin estado es un control no pasado. Nunca inventa datos. Úsala al lanzar o tocar una web, una landing, un blog o páginas a escala, o cuando pidas "audita el SEO de esta web", "revisa el schema", "¿está lista para lanzar?" o "¿por qué no nos citan las IAs?".
+description: Control de SEO, AEO y GEO para dar por terminada una web, punto por punto. Cubre metadata, imagen para compartir, datos estructurados (JSON-LD), reseñas, arquitectura e indexación a escala, sitemap, redirects, blog, analítica, higiene técnica, Core Web Vitals y contenido citable por ChatGPT, Perplexity y Google AI Overviews. Cada punto termina con estado (hecho, fallido, N/A, pendiente o diferido) y dueño; un punto sin estado es un control no pasado. Nunca inventa datos. Usala al lanzar o tocar una web, una landing, un blog o páginas a escala, o cuando pidas "auditá el SEO de esta web", "revisá el schema", "¿está lista para lanzar?" o "¿por qué no nos citan las IAs?".
 license: MIT
 ---
 
@@ -8,24 +8,24 @@ license: MIT
 
 Es el control que usamos en [Claura](https://claura-ai.com) antes de dar por terminada cualquier web de un cliente. Cada punto existe porque algo se rompió en una web real; donde sirve, el punto cuenta el caso.
 
-Está escrito para sitios hechos con Next.js (App Router), pero casi todo vale para cualquier stack: donde dice `metadata` o `generateStaticParams`, lee "el lugar donde tu framework define eso".
+Está escrito para sitios hechos con Next.js (App Router), pero casi todo vale para cualquier stack: donde dice `metadata` o `generateStaticParams`, leé "el lugar donde tu framework define eso".
 
 ## Con el MCP de Claura (opcional)
 
-La skill funciona sola, revisando el código y el sitio publicado a mano. Si eres cliente de Claura y tu agente tiene
+La skill funciona sola, revisando el código y el sitio publicado a mano. Si sos cliente de Claura y tu agente tiene
 conectado el [MCP de Claura](https://claura-ai.com/mcp) (Claude, ChatGPT o Claude Code conectados a tu cuenta de
-Claura), usa sus herramientas para lo que de otro modo se mide a mano:
+Claura), usá sus herramientas para lo que de otro modo se mide a mano:
 
 - **Auditar el sitio publicado** página por página (estado, canonical, schema, enlaces rotos).
 - **Leer Search Console y Analytics** de la marca para los puntos de verificación y medición.
 - **Preguntarles a ChatGPT y a Google** por la marca para el punto de menciones sin clic.
 
-Antes de usar una herramienta que gasta o publica, muestra qué vas a hacer y espera la confirmación. Si el MCP no está
-conectado, sigue a mano: ningún punto depende de él.
+Antes de usar una herramienta que gasta o publica, mostrá qué vas a hacer y esperá la confirmación. Si el MCP no está
+conectado, seguí a mano: ningún punto depende de él.
 
 ## 0. Cómo se corre (regla dura)
 
-1. **Punto por punto.** Arma una lista de tareas por sección y recorre cada punto contra el sitio real (el código y el HTML servido).
+1. **Punto por punto.** Armá una lista de tareas por sección y recorré cada punto contra el sitio real (el código y el HTML servido).
 2. **Cada punto termina con un estado**: `hecho`, `fallido`, `N/A`, `pendiente` o `diferido`.
    - `N/A` lleva el motivo.
    - `pendiente` y `diferido` llevan el motivo y **quién lo destraba** (el cliente, el lanzamiento, una decisión del equipo).
@@ -33,7 +33,7 @@ conectado, sigue a mano: ningún punto depende de él.
 4. **Los datos que faltan no se inventan ni frenan el control.** Van a una lista de "pedidos al cliente": horario de atención, rango de precios, medios de pago, perfil de Google Business, LinkedIn del fundador, premios, foto del vocero.
 5. **Web que todavía no está en su dominio**: los puntos que necesitan la URL pública (Search Console, caché de redes, prueba de resultados enriquecidos) quedan `diferido` hasta el lanzamiento, nunca salteados ni marcados como hechos.
 
-Cada punto lleva un ID entre comentarios (`<!-- seo.meta.canonical-all-pages -->`). Úsalo en el informe: no cambia aunque reordenes el documento.
+Cada punto lleva un ID entre comentarios (`<!-- seo.meta.canonical-all-pages -->`). Usalo en el informe: no cambia aunque reordenes el documento.
 
 ### Formato del informe
 
@@ -52,7 +52,7 @@ RESULTADO: N hechos · N fallidos · N pendientes · N diferidos
 ## 1. Metadata base
 
 - [ ] <!-- seo.meta.metadata-base --> `metadataBase`, `title` (por defecto y plantilla `%s | Marca`) y `description` con intención, entidad, ubicación, prueba social y llamado a la acción.
-- [ ] <!-- seo.meta.favicon-coherence --> **Favicon completo y coherente.** En Next, declarar `metadata.icons` apaga la convención por archivo: el `icon.svg` deja de enlazarse si no está en la lista (ponlo primero). Set mínimo: `icon.svg`, `favicon.ico` (16 y 32), 192, 512, apple-touch 180 y manifest. El ícono sale del isotipo real de la marca, simplificado para leerse a 16 px.
+- [ ] <!-- seo.meta.favicon-coherence --> **Favicon completo y coherente.** En Next, declarar `metadata.icons` apaga la convención por archivo: el `icon.svg` deja de enlazarse si no está en la lista (ponelo primero). Set mínimo: `icon.svg`, `favicon.ico` (16 y 32), 192, 512, apple-touch 180 y manifest. El ícono sale del isotipo real de la marca, simplificado para leerse a 16 px.
 - [ ] <!-- seo.meta.canonical-all-pages --> `canonical` en **todas** las páginas; en paginación, uno distinto por página. **Nunca en el layout raíz**: se hereda y manda todas las páginas a la home. Va por página, con un helper tipo `pageAlternates(locale, path)`.
 - [ ] <!-- seo.meta.hreflang-real-locales --> **hreflang honesto**: solo idiomas con contenido traducido de verdad, más `x-default`. Cada idioma declara su propia canonical y se referencia a sí mismo y a los demás. El selector de idioma usa `<a href>` rastreables sin `nofollow`.
 - [ ] <!-- seo.meta.robots-googlebot --> `robots` y `googleBot` con `max-snippet: -1` y `max-image-preview: large`.
@@ -77,13 +77,13 @@ RESULTADO: N hechos · N fallidos · N pendientes · N diferidos
 ## 3. Imagen para compartir (Open Graph)
 
 - [ ] <!-- seo.og.dedicated-1200x630 --> **Dedicada, 1200×630.** Nunca una foto genérica ni otra proporción: WhatsApp, Facebook y LinkedIn la recortan.
-- [ ] <!-- seo.og.brand-composition --> Logo, frase con la propuesta, prueba social, dominio y la cara del vocero si la marca tiene uno. Fondo de la marca. Si la generas por código, carga las fuentes reales del sitio desde un archivo y mira el resultado: un servicio de fuentes que falla puede devolver una página de error en vez de la fuente, y la imagen sale con la letra de respaldo sin ningún aviso.
+- [ ] <!-- seo.og.brand-composition --> Logo, frase con la propuesta, prueba social, dominio y la cara del vocero si la marca tiene uno. Fondo de la marca. Si la generás por código, cargá las fuentes reales del sitio desde un archivo y mirá el resultado: un servicio de fuentes que falla puede devolver una página de error en vez de la fuente, y la imagen sale con la letra de respaldo sin ningún aviso.
 - [ ] <!-- seo.og.large-text --> **Textos grandes**: título de 60 px o más y secundarios de 25 px o más. Se ve en miniatura en el feed.
 - [ ] <!-- seo.og.metadata-wiring --> Declarada en el layout raíz (con `twitter: summary_large_image`, ancho, alto y alt), en las páginas con metadata propia y como respaldo de las páginas dinámicas.
-- [ ] <!-- seo.og.measured-dimensions --> **`og:image:width` y `height` se miden del archivo, nunca se escriben a mano.** En claura-ai.com, 103 de 114 artículos declaraban 1920×1080 sobre imágenes de otro tamaño. Lee la medida de los bytes del archivo (no de la extensión: un `.png` puede ser un JPEG) y, si no se puede medir, omítela.
+- [ ] <!-- seo.og.measured-dimensions --> **`og:image:width` y `height` se miden del archivo, nunca se escriben a mano.** En claura-ai.com, 103 de 114 artículos declaraban 1920×1080 sobre imágenes de otro tamaño. Leé la medida de los bytes del archivo (no de la extensión: un `.png` puede ser un JPEG) y, si no se puede medir, omitila.
 - [ ] <!-- seo.og.verify-against-file --> **Verificar contra el archivo publicado**: bajar la imagen que anuncia la página y medirla. Leer las etiquetas solo prueba que existen.
-- [ ] <!-- seo.og.no-empty-images --> **Ningún `openGraph` sin `images`.** En Next, el `openGraph` de una página reemplaza el del layout raíz: si omite `images`, esa página se comparte sin imagen. Ciérralo con un test que falle ante un `openGraph` sin `images`.
-- [ ] <!-- seo.og.no-portrait-no-logo --> **Nunca una foto vertical ni un logo como imagen social.** Si cada ficha tiene foto propia, genera una tarjeta de 1200×630 por foto con recorte al centro.
+- [ ] <!-- seo.og.no-empty-images --> **Ningún `openGraph` sin `images`.** En Next, el `openGraph` de una página reemplaza el del layout raíz: si omite `images`, esa página se comparte sin imagen. Cerralo con un test que falle ante un `openGraph` sin `images`.
+- [ ] <!-- seo.og.no-portrait-no-logo --> **Nunca una foto vertical ni un logo como imagen social.** Si cada ficha tiene foto propia, generá una tarjeta de 1200×630 por foto con recorte al centro.
 
 ## 4. Datos estructurados (JSON-LD)
 
@@ -98,13 +98,13 @@ Un solo `@graph`, renderizado en el servidor, en el `<head>`.
 - [ ] <!-- seo.schema.entity-stubs --> **Cada página que referencia un `@id` lo incluye**: un buscador resuelve los `@id` dentro de una sola página. Si una subpágina apunta a un nodo que solo está en la home, el enlace queda roto sin que el validador se queje. Lleva una versión mínima del nodo (`@id`, `@type`, `name`, `url`).
 - [ ] <!-- seo.schema.person --> `Person` por fundador o socio (`jobTitle`, `worksFor`, `alumniOf`, `knowsAbout`, `sameAs`).
 - [ ] <!-- seo.schema.breadcrumb-visible --> **`BreadcrumbList` y miga visible armadas desde la misma lista** (un helper), con la misma raíz en todas las plantillas. El schema sin miga visible es un punto a medias.
-- [ ] <!-- seo.schema.faq-visible-only --> **FAQ visible y `FAQPage` son decisiones separadas.** No agregues preguntas por costumbre. Si emites `FAQPage`, sale del mismo componente que se ve, con texto idéntico. Google dejó de mostrar el resultado enriquecido de FAQ para todos los sitios el 7 de mayo de 2026: emítelo solo si sale gratis.
-- [ ] <!-- seo.schema.faq-answer-in-html --> **Las respuestas de cada pregunta están en el HTML con la pregunta cerrada.** Un acordeón que monta la respuesta al abrirla la esconde de Google y de las IAs, que no hacen clic. Usa `<details>` o el contenido montado y plegado. Verifícalo con `curl` en una página de cada plantilla.
+- [ ] <!-- seo.schema.faq-visible-only --> **FAQ visible y `FAQPage` son decisiones separadas.** No agregues preguntas por costumbre. Si emitís `FAQPage`, sale del mismo componente que se ve, con texto idéntico. Google dejó de mostrar el resultado enriquecido de FAQ para todos los sitios el 7 de mayo de 2026: emitilo solo si sale gratis.
+- [ ] <!-- seo.schema.faq-answer-in-html --> **Las respuestas de cada pregunta están en el HTML con la pregunta cerrada.** Un acordeón que monta la respuesta al abrirla la esconde de Google y de las IAs, que no hacen clic. Usá `<details>` o el contenido montado y plegado. Verificalo con `curl` en una página de cada plantilla.
 - [ ] <!-- seo.schema.plain-text --> **Texto plano en todo el JSON-LD**: nada de `[texto](url)`, `**` ni etiquetas. Si el texto sale de MDX, pasa por un solo limpiador compartido.
-- [ ] <!-- seo.schema.template-matrix --> **Matriz de schema por plantilla sobre el sitemap entero**: agrupa las URLs por plantilla y anota los `@type`. Marca plantillas indexables sin JSON-LD, preguntas marcadas que no se ven, migas distintas de las visibles y `url` distinto del canonical. Se repite cada vez que nace una plantilla.
+- [ ] <!-- seo.schema.template-matrix --> **Matriz de schema por plantilla sobre el sitemap entero**: agrupá las URLs por plantilla y anotá los `@type`. Marcá plantillas indexables sin JSON-LD, preguntas marcadas que no se ven, migas distintas de las visibles y `url` distinto del canonical. Se repite cada vez que nace una plantilla.
 - [ ] <!-- seo.schema.logo-square --> **`Organization.logo` es el logo real**: cuadrado o casi, de 112 px o más. Nunca la imagen de 1200×630.
 - [ ] <!-- seo.schema.free-tool --> **Herramientas gratis**: `WebApplication` con `offers.price: "0"`, `applicationCategory` de la lista de Google (por ejemplo `BusinessApplication`), `operatingSystem: "Web"` y `provider`. El resultado enriquecido necesita reseñas reales: sin ellas, no se agregan.
-- [ ] <!-- seo.schema.clone-parity --> **Si la web reemplaza a otra, la referencia es la vieja**: antes de cambiar el dominio, guarda qué `@type` servía cada página del sitio original y compara todas las rutas, no una muestra. Después del cambio la vieja ya no existe para comparar.
+- [ ] <!-- seo.schema.clone-parity --> **Si la web reemplaza a otra, la referencia es la vieja**: antes de cambiar el dominio, guardá qué `@type` servía cada página del sitio original y compará todas las rutas, no una muestra. Después del cambio la vieja ya no existe para comparar.
 - [ ] <!-- seo.schema.data-integrity --> **Cada dato del schema sale de una fuente**: cantidades, precios, fechas, superficies, servicios. Lo no confirmado no se afirma. El JSON-LD es la versión más citada y menos revisada de la web: un dato inventado ahí termina en Google y en las respuestas de las IAs.
 
 ## 5. Reseñas (reglas duras)
@@ -112,7 +112,7 @@ Un solo `@graph`, renderizado en el servidor, en el `<head>`.
 - [ ] <!-- seo.reviews.no-fabrication --> **Jamás inventar reseñas** ni atribuir texto que el cliente no dijo.
 - [ ] <!-- seo.reviews.schema-authorized --> `Review` solo con texto real, autor real y permiso del cliente.
 - [ ] <!-- seo.reviews.aggregate-rating-self-serving --> **Nunca `aggregateRating` con reseñas alojadas en el propio sitio** de un negocio local: Google lo ignora y puede penalizar. Las estrellas salen del perfil de Google Business.
-- [ ] <!-- seo.reviews.gbp-review-link --> Si faltan reseñas, arma el link para dejar reseña desde el perfil de Google Business y pásaselo al cliente.
+- [ ] <!-- seo.reviews.gbp-review-link --> Si faltan reseñas, armá el link para dejar reseña desde el perfil de Google Business y pasáselo al cliente.
 
 ## 6. Verificación antes de dar por bueno
 
@@ -128,7 +128,7 @@ Un solo `@graph`, renderizado en el servidor, en el `<head>`.
 
 ## 7. Después de publicar (cada vez que cambia la imagen social o la metadata)
 
-- [ ] <!-- seo.postdeploy.social-rescrape --> **Refrescar la caché de Facebook y WhatsApp**, que guardan la imagen vieja semanas: `POST https://graph.facebook.com/v26.0/` (o la versión vigente de la Graph API) con `id=<url>`, `scrape=true` y un token de app (`APP_ID|APP_SECRET`). Sin token ya no funciona. Valida por la URL de la imagen en la respuesta.
+- [ ] <!-- seo.postdeploy.social-rescrape --> **Refrescar la caché de Facebook y WhatsApp**, que guardan la imagen vieja semanas: `POST https://graph.facebook.com/v26.0/` (o la versión vigente de la Graph API) con `id=<url>`, `scrape=true` y un token de app (`APP_ID|APP_SECRET`). Sin token ya no funciona. Validá por la URL de la imagen en la respuesta.
 - [ ] <!-- seo.postdeploy.sharing-debugger --> Revisión visual en el depurador de contenido compartido de Facebook.
 
 ## 8. Blog y artículos
@@ -151,20 +151,20 @@ Un solo `@graph`, renderizado en el servidor, en el `<head>`.
 
 ## 9. Analítica
 
-- [ ] <!-- seo.analytics.evidence-state --> **Estado con evidencia, no "tiene el ID"**: reporta por separado configurado, etiqueta servida en el dominio, evento verificado y contacto conciliado con el CRM. Tener el ID de GA4 solo prueba que existe.
+- [ ] <!-- seo.analytics.evidence-state --> **Estado con evidencia, no "tiene el ID"**: reportá por separado configurado, etiqueta servida en el dominio, evento verificado y contacto conciliado con el CRM. Tener el ID de GA4 solo prueba que existe.
 - [ ] <!-- seo.analytics.public-domain --> **Verificar en el dominio público**: `curl` al dominio real buscando el ID de medición. Una etiqueta publicada en una URL que nadie visita cuenta como no instalada.
 - [ ] <!-- seo.analytics.lead-events --> **Eventos de contacto en todas las páginas**: cada botón que trae plata (formulario, WhatsApp, agenda, teléfono, mail) dispara su evento, verificado en DebugView. Un botón del footer que mide en una sola página es medición rota.
 - [ ] <!-- seo.analytics.resilient-cta --> **El botón funciona antes y después de cargar JavaScript**: el enlace o el formulario apuntan a un destino válido sin JS; el modal es una mejora.
 - [ ] <!-- seo.analytics.crm-match --> **Un contacto, un evento**: el navegador mide la intención; el servidor emite el evento de contacto una sola vez, cuando el contacto quedó guardado, con el mismo identificador. Nunca desde los dos lados.
 - [ ] <!-- seo.analytics.consent-regions --> **Consentimiento probado por región**: antes y después de aceptar, en un país con ley de cookies y en otro sin ella.
 - [ ] <!-- seo.analytics.ai-channel --> **Canal de tráfico de IAs en GA4**: un grupo de canales propio, mirando antes qué referencias de IAs ya te llegan. Por ejemplo `chatgpt\.com|chat\.openai\.com|perplexity\.ai|claude\.ai|gemini\.google\.com|copilot\.microsoft\.com|deepseek\.com|grok\.com|meta\.ai`, más las que aparezcan en tus referencias.
-- [ ] <!-- seo.analytics.gtm-access --> **Google Tag Manager publicado no es lo mismo que editable**: anota qué etiquetas, destinos y consentimiento tiene el contenedor publicado, y por separado si alguien del equipo puede abrirlo y editarlo. No lo saques hasta haber migrado cada etiqueta y verificado que su evento sigue llegando.
+- [ ] <!-- seo.analytics.gtm-access --> **Google Tag Manager publicado no es lo mismo que editable**: anotá qué etiquetas, destinos y consentimiento tiene el contenedor publicado, y por separado si alguien del equipo puede abrirlo y editarlo. No lo saques hasta haber migrado cada etiqueta y verificado que su evento sigue llegando.
 
 ## 10. Higiene técnica
 
-- [ ] <!-- seo.tech.canonical-host --> **Un solo host**: `www` y sin `www` resueltos con 301 o 308 al que declara la canonical. Pruébalo con `curl -sI` a los dos.
+- [ ] <!-- seo.tech.canonical-host --> **Un solo host**: `www` y sin `www` resueltos con 301 o 308 al que declara la canonical. Probalo con `curl -sI` a los dos.
 - [ ] <!-- seo.tech.https-redirect --> HTTP a HTTPS permanente, directo al destino final.
-- [ ] <!-- seo.tech.real-404 --> **404 real**: página propia con salidas, que responde 404 y no 200. Pruébalo con una ruta inventada.
+- [ ] <!-- seo.tech.real-404 --> **404 real**: página propia con salidas, que responde 404 y no 200. Probalo con una ruta inventada.
 - [ ] <!-- seo.tech.trailing-slash --> Barra final consistente: `/pagina` y `/pagina/` no sirven las dos 200 sin canonical.
 - [ ] <!-- seo.tech.safe-environments --> **Entornos de prueba no indexables** y fuera del sitemap; producción no conserva un `noindex` temporal.
 - [ ] <!-- seo.tech.international-routing --> **Sin redirección automática por idioma o IP**: selector rastreable y URL propia por idioma.
@@ -185,19 +185,19 @@ El SEO técnico hace que la página se indexe. Esta sección hace que ChatGPT, P
 
 ### 11.1 Acceso técnico
 
-- [ ] <!-- seo.aeo.ssr-content --> **El contenido importante está en el HTML inicial**: servicios, preguntas, datos, precios, canonical y robots. Pruébalo con `curl -s <url> | grep "<frase>"`. Si solo aparece después de hidratar, las IAs pueden no verlo.
+- [ ] <!-- seo.aeo.ssr-content --> **El contenido importante está en el HTML inicial**: servicios, preguntas, datos, precios, canonical y robots. Probalo con `curl -s <url> | grep "<frase>"`. Si solo aparece después de hidratar, las IAs pueden no verlo.
 - [ ] <!-- seo.aeo.initial-h1 --> **Un `h1` en el HTML de cada página**, incluidas las que abren con un video o una foto sin texto. Si el diseño no muestra título, un `<h1 class="sr-only">` descriptivo.
-- [ ] <!-- seo.aeo.robots-retrieval-training --> **robots.txt: búsqueda y entrenamiento son decisiones separadas.** Los rastreadores de búsqueda (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) no pueden estar bloqueados, ni por un comodín heredado. Los de entrenamiento (`GPTBot`, `CCBot`, `Google-Extended`) los decide la marca. `ChatGPT-User` y `Perplexity-User` responden a un pedido de una persona y sus dueños avisan que pueden no respetar robots.txt: anótalos, pero no frenan el control. `Google-Extended` no controla tu aparición en Google.
+- [ ] <!-- seo.aeo.robots-retrieval-training --> **robots.txt: búsqueda y entrenamiento son decisiones separadas.** Los rastreadores de búsqueda (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`) no pueden estar bloqueados, ni por un comodín heredado. Los de entrenamiento (`GPTBot`, `CCBot`, `Google-Extended`) los decide la marca. `ChatGPT-User` y `Perplexity-User` responden a un pedido de una persona y sus dueños avisan que pueden no respetar robots.txt: anotalos, pero no frenan el control. `Google-Extended` no controla tu aparición en Google.
 - [ ] <!-- seo.aeo.performance --> Las páginas que venden no son las lentas.
 
 ### 11.2 Contenido citable
 
 - [ ] <!-- seo.aeo.topic-clusters --> **Temas, no palabras sueltas**: cada página que vende cubre un grupo de preguntas reales (de "Otras preguntas de los usuarios", del propio asistente de IA y de los mensajes que recibe la marca).
-- [ ] <!-- seo.aeo.intent-followups --> **Un H2 por pregunta**, con la respuesta autocontenida en el primer párrafo. Mira cómo el asistente de IA arma su respuesta al tema: esos subtemas son las repreguntas.
+- [ ] <!-- seo.aeo.intent-followups --> **Un H2 por pregunta**, con la respuesta autocontenida en el primer párrafo. Mirá cómo el asistente de IA arma su respuesta al tema: esos subtemas son las repreguntas.
 - [ ] <!-- seo.aeo.information-gain --> **Algo que los demás no dicen**: un dato propio, un caso real, un método, una opinión. La página que repite el top 10 no se cita.
 - [ ] <!-- seo.aeo.extractable-blocks --> **Bloques que se pueden levantar tal cual**: definición corta, lista de pasos, tabla comparativa, "en resumen" al principio de la sección.
 - [ ] <!-- seo.aeo.summary-under-h1 --> **Resumen debajo del H1 en servicios y landings**: 2 o 3 oraciones con qué se ofrece, para quién y en cuánto tiempo, con la marca nombrada. Texto propio de cada página y en el HTML, no dentro de un acordeón ni de una imagen.
-- [ ] <!-- seo.aeo.citable-data --> **Datos con fuente y entidades con nombre**: los números salen de datos reales o de fuentes enlazadas. Escribe "Claura", "Buenos Aires", "abogados de inmigración", no "nosotros": las IAs citan entidades, no pronombres.
+- [ ] <!-- seo.aeo.citable-data --> **Datos con fuente y entidades con nombre**: los números salen de datos reales o de fuentes enlazadas. Escribí "Claura", "Buenos Aires", "abogados de inmigración", no "nosotros": las IAs citan entidades, no pronombres.
 - [ ] <!-- seo.aeo.freshness --> Fecha de actualización real, visible y en `dateModified`. No se toca sin un cambio de fondo.
 
 ### 11.3 Fuera de la web
@@ -210,16 +210,16 @@ No frena el lanzamiento, pero sale en el informe como plan con dueño.
 
 ### 11.4 Medición
 
-- [ ] <!-- seo.aeo.zero-click-mentions --> **Menciones sin clic**: al cerrar el control, haz 5 a 10 preguntas típicas de tu rubro en ChatGPT, Perplexity y Gemini y anota si aparece la marca y a quién citan. Repítelo al mes. Es el equivalente, para las IAs, de la prueba de resultados enriquecidos.
+- [ ] <!-- seo.aeo.zero-click-mentions --> **Menciones sin clic**: al cerrar el control, hacé 5 a 10 preguntas típicas de tu rubro en ChatGPT, Perplexity y Gemini y anotá si aparece la marca y a quién citan. Repetilo al mes. Es el equivalente, para las IAs, de la prueba de resultados enriquecidos.
 
 ## Reglas
 
 1. **Nunca inventes datos**: horarios, reseñas, precios, coordenadas, cifras. Lo que falta va a pedidos al cliente.
 2. **Cada punto con estado**, y los pendientes con dueño.
-3. **Verifica contra el sitio publicado**, no contra el código: el código dice lo que querías, el dominio dice lo que pasa.
+3. **Verificá contra el sitio publicado**, no contra el código: el código dice lo que querías, el dominio dice lo que pasa.
 4. **Una plantilla se revisa con una URL de cada tipo**, nunca solo con la home.
 5. **No cambies una página que ya trae visitas sin mirar antes qué búsquedas la traen**: reescribir una página con tráfico en tanda puede costarte sus clics.
 
 ---
 
-Hecha por [Claura](https://claura-ai.com), agencia de marketing con IA. Es la misma lista que corremos en las webs de nuestros clientes. Si quieres que te armemos o auditemos la web, mira [claura-ai.com/agencia-web-profesional](https://claura-ai.com/agencia-web-profesional).
+Hecha por [Claura](https://claura-ai.com), agencia de marketing con IA. Es la misma lista que corremos en las webs de nuestros clientes. Si querés que te armemos o auditemos la web, mirá [claura-ai.com/agencia-web-profesional](https://claura-ai.com/agencia-web-profesional).
